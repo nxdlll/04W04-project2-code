@@ -128,7 +128,7 @@ dfA = df[df$Treatment=="A",]
 dfB = df[df$Treatment=="B",]
 ```
 
-按treatmentA 的众数填A
+
 ```{r}
 getmode <- function(v) {
    uniqv <- unique(v)
@@ -145,7 +145,7 @@ for (column in names(dfA)) {
   }
 }
 ```
-按treatmentB 的众数填B
+
 
 ```{r}
 getmode <- function(v) {
