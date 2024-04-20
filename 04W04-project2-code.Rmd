@@ -277,7 +277,7 @@ summary(effect_model)
 
 ```{r}
 #model diagnostic
-
+#for model 2 (poisson, pickups)
 #residual v.s. fitted value
 library(ggplot2)
 ggplot(effect_model, aes(x = .fitted, y = .resid)) +
@@ -312,7 +312,8 @@ ols_plot_resid_lev(effect_model)
 ```
 
 ```{r}
-#residual v.s. fitted value
+#for model 1 (binomial, compliance)
+#Residual plot (residual v.s. fitted value)
 library(ggplot2)
 ggplot(compliance_model, aes(x = .fitted, y = .resid)) +
   geom_point() +
@@ -835,7 +836,6 @@ average_values_per_day_baseline <- data_all_baseline %>%
     Proportion.ST = median(Proportion.ST, na.rm = TRUE)
   )
 
-# View the resulting data frame
 print(average_values_per_day_baseline)
 
 ggplot(average_values_per_day_baseline, aes(x = Date, y = Total.ST.min)) +
@@ -940,13 +940,12 @@ each success avg credit
 ```{r}
 library(ggplot2)
 
-# 假设您的数据框名为df
-# 使用ggplot2包来创建横向柱状图
+
 ggplot(grouped_data, aes(x = factor(total_success), y = cousre_credit, fill = factor(total_success))) +
-  geom_bar(stat = "summary", fun = "mean") + # 计算平均值
+  geom_bar(stat = "summary", fun = "mean") + 
   labs(x = "Total Success", y = "Average Course Credit", fill = "Total Success") +
   theme_minimal() +
-  coord_flip() +  # 使柱状图横向显示
+  coord_flip() +  
   ggtitle("Average Course Credit by Total Success")
 
 
