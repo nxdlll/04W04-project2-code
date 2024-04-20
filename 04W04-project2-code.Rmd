@@ -59,7 +59,6 @@ Fulldata$Total.ST.min[!is.na(Fulldata$Total.ST)] <- sapply(Fulldata$Total.ST[!is
 
 Fulldata$Social.ST.min[!is.na(Fulldata$Social.ST)] <- sapply(Fulldata$Social.ST[!is.na(Fulldata$Social.ST)], time_to_minutes)
 
-print(Fulldata)
 ```
 
 ```{r}
@@ -70,17 +69,17 @@ date_numeric_vector <- completed_Fulldata$Date
 date_numeric_vector <- as.numeric(date_numeric_vector)
 date_as_date_vector <- as.Date(date_numeric_vector, origin = "1899-12-30")
 completed_Fulldata$Date <- date_as_date_vector
-print(completed_Fulldata)
+
 ```
 ```{r}
 completed_Fulldata$Total.ST <- NULL
 completed_Fulldata$Social.ST <- NULL
-print(completed_Fulldata)
+
 ```
 ```{r}
 completed_Fulldata$Proportion.ST <- completed_Fulldata$Social.ST.min/completed_Fulldata$Total.ST.min
 completed_Fulldata$Duration.per.use <- completed_Fulldata$Total.ST.min/completed_Fulldata$Pickups
-print(completed_Fulldata)
+
 ```
 ```{r}
 variable_with_missing <- "Pickup.1st"
@@ -93,7 +92,7 @@ if (any(is.na(completed_Fulldata[[variable_with_missing]]))) {
   completed_Fulldata[is.na(completed_Fulldata[[variable_with_missing]]), variable_with_missing] <- imputed_values
 }
 
-print(completed_Fulldata)
+
 ```
 ```{r}
 library(dplyr)
@@ -103,7 +102,7 @@ end_date <- as.Date("2024-04-02")
 completed_Fulldata <- completed_Fulldata %>%
   mutate(compliance = if_else(Date >= start_date & Date <= end_date, compliance, NA))
 
-print(completed_Fulldata)
+
 Completed_Fulldata=completed_Fulldata
 ```
 ```{r}
@@ -255,7 +254,7 @@ data_4weeks$Total.ST.min[data_4weeks$Total.ST.min == 0] <- data_4weeks$Total.ST.
 
 #add weekday_weekend column
 data_4weeks$Date <- as.Date(data_4weeks$Date)
-data_4weeks$Weekday_Weekend <- ifelse(weekdays(data_4weeks$Date) %in% c('星期六', '星期日'), 1, 0)
+data_4weeks$Weekday_Weekend <- ifelse(weekdays(data_4weeks$Date) %in% c('Saturday', 'Sunday'), 1, 0)
 
 
 #first model
@@ -417,7 +416,7 @@ convert_time_to_fraction <- function(time_str) {
 data_all$angle <- sapply(data_all$Pickup.1st, convert_time_to_fraction)
 
 # 
-print(data_all)
+
 
 ```
 angle change
@@ -434,7 +433,7 @@ convert_time_to_fraction <- function(time_str) {
 data_all$angle <- sapply(data_all$Pickup.1st, convert_time_to_fraction)
 
 # 
-print(data_all)
+
 
 
 ```
